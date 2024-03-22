@@ -16,7 +16,7 @@ Las imágenes e iconos se han obtenido de:
 - https://pixabay.com/es/photos/lago-caba%C3%B1a-embarcadero-muelle-192990/
 - https://pixabay.com/es/photos/caba%C3%B1a-%C3%A1rboles-sendero-rastro-casa-2955582/
 - https://pixabay.com/es/photos/casa-grande-residencial-casa-389271/
-- banderas: flaticon.es
+- banderas: https://www.flaticon.es
 
 En el archivo PDF de resultado que se adjunta tened en cuenta que:
 - el degradado de ofertas no salen bien (salen un negro y blanco de fondo)
