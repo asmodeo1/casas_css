@@ -7,6 +7,8 @@ En este ejercicio vamos a usar:
 - usaremos algunas transparencias en colores de fondos y degradados
 - usaremos rem como unidades para textos y muchos de los márgenes y espaciados
 
+Las cajas de las casas no tendrán todas la misma altura, pero no lo vamos a solucionar en este ejercicio.
+
 Las imágenes e iconos se han obtenido de:
 - https://www.flaticon.es/icono-gratis/hogar_709873
 - https://www.freepik.es/foto-gratis/fondo-textura-madera-blanca-rustica-sucia_21631853.htm
