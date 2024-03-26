@@ -21,3 +21,8 @@ Las imágenes e iconos se han obtenido de:
 En el archivo PDF de resultado que se adjunta tened en cuenta que:
 - el degradado de ofertas no salen bien (salen un negro y blanco de fondo)
 - el pie de página no se muestra abajo de todo, cosa que si lo hará en la página
+
+Se han añadido dos soluciones:
+- index_resultado.htm que usa display:table para el marcador
+- idnex_resultado con flexbox.htm que usa display: flex para el marcador
+
