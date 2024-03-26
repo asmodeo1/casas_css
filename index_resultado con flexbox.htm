@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tu casa.com</title>
+    <style>
+       /* Los comentarios con ++++ son las propiedades que se añaden al usar flexbox.
+      Los comentarios con ---- son las propiedades que se quitan al usar flexbox */
+
+      /* Eliminamos todos los márgenes, espaciados y ponemos
+        el tipo de letra al por defecto */
+      * {
+        margin: 0;
+        padding: 0;
+        font-size: 100%;
+      }
+      /* El fondo de la página lleva una imagen */
+      body {
+        background-image: url(imagenes/textura.jpeg);
+        /* Como el fondo es más corto que la pantalla, al menos en una
+            de PC, con esta propiedad hacemos que ocupe todo */
+        background-size: cover;
+      }
+      header {
+        background-color: white;
+        box-shadow: 0 2px 2px lightgray;
+        text-align: center;
+        /* Queremos que el encabezado quede fijo en la parte superior */
+        position: fixed;
+        /* Al hacerlo fijo si ancho se cambia al de su contenido, con lo que 
+            no ocuparía todo el ancho. Por ello le volvemos a dar un 100% */
+        width: 100%;
+        /* Cuando nos desplazemos verticalmente por la página, el contenido se mostrará
+            por encima de esta cabecera. Dándole un valor positivo a z-index, esta cabecera
+            quedará por encima. Si varios elementos tuvieran establecida esta propiedad y se
+            solapan, quedará por encima el que tenga mayor z-index */
+        z-index: 2;
+      }
+      header h1 {
+        /* Nuestra página usa la misma fuente en todos los elementos, con lo que podríamos
+            establecerla solo en el body */
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        /* rem siempre es un tamaño relativo al del body, que por defecto suele ser 16px.
+            em siempre es relativo a su contenedor */
+        font-size: 4rem;
+        background-image: url(imagenes/casa.png);
+        background-repeat: no-repeat;
+        /* Para poder colocar la imagen de fondo a la izquierda del título, una sencilla
+            opción es poner el contenedor en línea, con lo que solo ocupa lo que necesite su
+             contenido. Luego basta con poner la imagen a su izquierda y dejar un padding para
+             que el texto no quede por encima de la imagen */
+        background-position: left center;
+        display: inline-block;
+        padding-left: 70px;
+        text-shadow: 2px 2px 1px rgb(221, 87, 87);
+      }
+      header h1 span {
+        color: red;
+      }
+      .ofertas h2 {
+        color: white;
+        font-size: 2rem;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        background-color: black;
+        /* Creamos un degradado de negro a blanco que termine en el 80% del ancho y que se vaya
+             desvaneciendo (usando rgba con 1 en el primer color y 0 en el segundo) */
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 1) 0%,
+          rgba(255, 255, 255, 0) 80%
+        );
+        padding: 0.5rem;
+        font-weight: normal;
+        /* Como solo quiero cambiar el margen superior e inferior, dejo el derecho e izquierdo
+            a auto (automático) */
+        margin: 1rem auto;
+        /* Para centrar las cajas de las casas, pues les damos un display: inline-block */
+        text-align: left;
+      }
+      .ofertas {
+        /* Como hemos usado text-align: center anteriormente para centrar las cajas,
+            ahora debemos poner el texto de nuevo a la izquierda */
+        text-align: center;
+        padding-top: 80px;
+      }
+      /* +++++++++++++ 
+      Hemos añadido un nuevo div al HTML que engloba todas las casas
+      pues no queremos que display: flex afecte al h2 de Ofertas */
+      .casas { 
+        display: flex;
+        gap: 30px; /* Espacio entre casas */
+        flex-wrap: wrap; /* Que las casas pasen a la siguiente línea si no caben */
+        justify-content: center; /* Centrar las cajas horizontalmente */
+      }
+      .casa {
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        /* ------ width: 30%; */
+        min-width: 30%; /* ++++++++++ Les ponemos un ancho mínimo */
+        border: 2px solid black;
+        /* ---------- margin: 2rem; */
+        background-color: white;
+        /* Para poner el precio arriba a la derecha, tendremos que usar posicionamiento
+            absoluto, con lo que su contenedor tiene que tener un posicionamiento diferente
+            a static, que es el valor por defecto; de no hacerlo su contenedor sería el body.
+            Poniendo position: relative; sin más, lo conseguimos */
+        position: relative;
+        /* Para poner las cajas en la misma fila */
+        /* ---------- display: inline-block; */
+      }
+      .casa > img:first-of-type {
+        /* Queremos que la primera imagen ocupe un 100% de ancho. Para ello debemos
+            usar >, pues si no sería la primera imagen de cada contenedor; en nuestro
+            caso la foto de la casa y de la bandera (que está en su propio div). 
+            Una opción más sencilla sería usar clases */
+        width: 100%;
+      }
+      .casa div {
+        padding: 0.5rem;
+        /* Como hemos usado text-align: center anteriormente para centrar las cajas,
+            ahora debemos poner el texto de nuevo a la izquierda */
+        text-align: left;
+      }
+      .precio {
+        color: white;
+        font-weight: bold;
+        /* Le ponemos un fondo negro bastante transparente */
+        background-color: rgba(0, 0, 0, 0.4);
+        font-size: 1.5rem;
+        padding: 0.5rem;
+        /* Para moverla con respecto a su contenedor */
+        position: absolute;
+        /* Por defceto su posición será arriba a la izquierda (0, 0). Nosotros la 
+            queremos arriba, pero dejando un poco de espacio, y a la derecha */
+        top: 20px;
+        right: 0;
+      }
+      /* Cuando el ratón pase sobre la caja, cambiamos el color y tamaño de la letra
+        del precio */
+      .casa:hover .precio {
+        color: yellow;
+        font-size: 2rem;
+      }
+      footer {
+        background-color: rgba(0, 0, 0, 0.7);
+        text-align: center;
+        color: white;
+        font-size: 2rem;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><span>Tu casa</span>.com</h1>
+    </header>
+    <main>
+      <section class="ofertas">
+        <h2>Ofertas</h2>
+        <div class="casas"> <!-- +++++++++++ -->
+          <div class="casa">
+            <p class="precio">650.000 €</p>
+            <img src="imagenes/casas/cottage-2955582_640.jpg" alt="casa 1" />
+            <div>
+              <img src="imagenes/espana.png" alt="espana" />
+              <p>Lorem ipsum</p>
+            </div>
+          </div>
+          <div class="casa">
+            <p class="precio">650.000 €</p>
+            <img src="imagenes/casas/cottage-2955582_640.jpg" alt="casa 1" />
+            <div>
+              <img src="imagenes/espana.png" alt="espana" />
+              <p>Lorem ipsum</p>
+            </div>
+          </div>
+          <div class="casa">
+            <p class="precio">650.000 €</p>
+            <img src="imagenes/casas/cottage-2955582_640.jpg" alt="casa 1" />
+            <div>
+              <img src="imagenes/espana.png" alt="espana" />
+              <p>Lorem ipsum</p>
+            </div>
+          </div>
+          <div class="casa">
+            <p class="precio">650.000 €</p>
+            <img src="imagenes/casas/cottage-2955582_640.jpg" alt="casa 1" />
+            <div>
+              <img src="imagenes/francia.png" alt="francia" />
+              <p>Lorem ipsum</p>
+            </div>
+          </div>
+          <div class="casa">
+            <p class="precio">650.000 €</p>
+            <img src="imagenes/casas/cottage-2955582_640.jpg" alt="casa 1" />
+            <div>
+              <img src="imagenes/espana.png" alt="espana" />
+              <p>Lorem ipsum</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>&copy; 2024 Tu casa.com</footer>
+  </body>
+</html>
